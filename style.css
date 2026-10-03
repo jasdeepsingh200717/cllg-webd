@@ -1,0 +1,217 @@
+/* ---------- 1. VARIABLES & RESET ---------- */
+:root {
+  --bg: #eef3f0;
+  --card: #ffffff;
+  --text: #10231c;
+  --muted: #5a6b63;
+  --border: #d3ddd7;
+  --primary: #ff6b1a;
+  --green: #2f7d4f;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: "DM Sans", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+}
+
+h2 { font-family: "Archivo", sans-serif; font-size: 32px; margin-bottom: 16px; }
+h3 { font-family: "Archivo", sans-serif; margin-bottom: 10px; }
+.muted { color: var(--muted); margin-bottom: 12px; }
+.hidden { display: none; }
+
+/* ---------- 2. NAVBAR ---------- */
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 20px;
+  border-bottom: 2px solid var(--text);
+  position: sticky;
+  top: 0;
+  background: var(--bg);
+  z-index: 10;
+}
+
+.logo {
+  font-family: "Archivo", sans-serif;
+  font-weight: 900;
+  font-size: 20px;
+  text-decoration: none;
+  color: var(--text);
+}
+.logo b { color: var(--primary); }
+
+.nav-links { display: flex; gap: 6px; }
+
+.nav-links button {
+  border: none;
+  background: none;
+  cursor: pointer;
+  padding: 6px 12px;
+  font: inherit;
+  font-weight: 500;
+  border-radius: 20px;
+  transition: background 0.2s;
+}
+.nav-links button:hover { background: var(--border); }
+.nav-links button.active { background: var(--text); color: #fff; } /* current page */
+
+/* ---------- 3. LAYOUT ---------- */
+main { max-width: 1000px; margin: auto; padding: 40px 20px; }
+
+.page { animation: fadeIn 0.35s ease; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; } }
+
+/* ---------- 4. HERO ---------- */
+.hero-container { display: flex; align-items: center; justify-content: space-between; gap: 40px; }
+.hero-text, .hero-img { flex: 1; }
+.hero-img { display: flex; justify-content: center; }
+.hero-img img { width: 100%; max-width: 400px; height: auto; }
+
+.hero-text h1 {
+  font-family: "Archivo", sans-serif;
+  font-size: clamp(40px, 8vw, 80px);
+  font-weight: 900;
+  line-height: 1;
+}
+.hero-text h1 span { color: var(--green); display: block; }
+.hero-text p { margin: 15px 0 20px; color: var(--muted); }
+
+/* ---------- 5. BUTTONS, CARDS, GRID ---------- */
+.btn {
+  padding: 10px 18px;
+  background: var(--primary);
+  border: 2px solid var(--primary);
+  color: #fff;
+  border-radius: 8px;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 700;
+  transition: transform 0.15s;
+}
+.btn:hover { transform: translateY(-2px); }
+.btn:active { transform: scale(0.97); }
+.btn.outline { background: transparent; border-color: var(--text); color: var(--text); margin-top: 14px; }
+
+.grid {
+  margin: 30px 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 14px;
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  padding: 18px;
+  border-radius: 12px;
+  margin-bottom: 14px;
+}
+.card strong { display: block; font-size: 24px; font-family: "Archivo", sans-serif; }
+
+/* ---------- 6. TABS & PROGRESS BAR ---------- */
+.tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
+.tabs button {
+  padding: 6px 14px;
+  border: 2px solid var(--text);
+  background: transparent;
+  border-radius: 20px;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 500;
+}
+.tabs button.active { background: var(--text); color: #fff; }
+
+.progress { height: 10px; background: var(--border); border-radius: 10px; overflow: hidden; margin: 8px 0; }
+.progress div { height: 100%; width: 0; background: var(--green); transition: width 0.4s; }
+
+/* ---------- 7. WORKOUT & MEAL ITEMS ---------- */
+.exercise {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  margin: 8px 0;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.exercise:hover { background: var(--bg); }
+.exercise.done { background: #e3f3e9; text-decoration: line-through; color: var(--muted); }
+.exercise input { width: 20px; height: 20px; accent-color: var(--green); }
+.exercise small { margin-left: auto; color: var(--muted); }
+
+.meal { cursor: pointer; border: 2px solid var(--border); transition: all 0.2s; }
+.meal:hover { transform: translateY(-3px); }
+.meal.eaten { border-color: var(--green); background: #e3f3e9; }
+
+/* ---------- 8. FORMS & BMI ---------- */
+.form { display: flex; flex-direction: column; gap: 10px; max-width: 420px; }
+.form input {
+  padding: 10px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font: inherit;
+}
+.form input:focus { outline: 2px solid var(--primary); }
+
+#bmiResult { font-size: 20px; min-height: 30px; }
+
+.bmi-scale {
+  position: relative;
+  height: 12px;
+  border-radius: 10px;
+  background: linear-gradient(to right, #4aa3df 0 14%, #2f7d4f 14% 40%, #f2b134 40% 60%, #e5533d 60%);
+}
+.bmi-scale span {
+  position: absolute;
+  top: -5px;
+  left: 0;
+  width: 6px;
+  height: 22px;
+  background: var(--text);
+  border-radius: 3px;
+  transition: left 0.6s;
+}
+.bmi-labels { display: flex; justify-content: space-between; font-size: 12px; color: var(--muted); }
+
+/* ---------- 9. TRACKER ---------- */
+.track-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--border);
+}
+.track-row button { border: none; background: none; cursor: pointer; font-size: 18px; }
+#chart svg { width: 100%; height: auto; }
+
+/* ---------- 10. TOAST ---------- */
+.toast {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translate(-50%, 80px);
+  background: var(--text);
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 24px;
+  opacity: 0;
+  transition: all 0.3s;
+}
+.toast.show { transform: translate(-50%, 0); opacity: 1; }
+
+/* ---------- 11. MOBILE ---------- */
+@media (max-width: 700px) {
+  .nav { flex-direction: column; gap: 8px; }
+  .hero-container { flex-direction: column; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+}
